@@ -1,0 +1,90 @@
+%META:TOPICINFO{author="LambertMeertens" date="1252713857" format="1.1" version="1.24"}%
+<style>
+  .bb { border-bottom: 2px solid gray; }
+  .br { border-right: 2px solid gray; }
+  table.padded { border-collapse: collapse; }
+  table.padded td { padding: 6px 8px; }
+</style>
+
+<table>
+<tr>
+<td  class="br">
+<b> [[People]]</b>
+</td>
+<td  class="br">
+<b> [[Publications]]</b>
+</td>
+<td  class="br">
+<b>[[Projects]]</b>
+</td>
+<td  class="br">
+<b>[[Libraries]]</b>
+</td>
+<td  class="br">
+<b>[[Teaching]]</b>
+</td>
+<td  class="br">
+<b> [[MastersProjects][Master's Projects]]</b>
+</td>
+<td>
+<b>[[Events]]</b>
+</td>
+</tr>
+</table>
+
+---++ Description
+One of the research themes investigated within the [[http://www.cs.uu.nl/groups/ST/][Software Technology Center]] in the [[http://www.cs.uu.nl/][Department of Information and Computing Sciences]] at 
+[[http://www.uu.nl/][Utrecht University]] is *generic programming* (GP). Over the last 10 years, we have played a 
+central role in the development of generic programming techniques, languages, and 
+libraries.
+
+---+++ What is Generic Programming?
+Software development often consists of designing a data type, to which functionality is 
+added. Some functionality is datatype specific, other functionality is defined on almost 
+all data types, and only depends on the structure of the data type. This is called 
+datatype-generic functionality. Examples of datatype-generic functionality are storing a 
+value in a database, editing a value, comparing two values for equality, pretty-printing a 
+value, etc. Larger applications of generic programming are: 
+
+   * XML tools such as XML compressors, and type-safe XML data-binding tools; 
+   * automatic testing; 
+   * constructing &#8216;boilerplate&#8217; code that traverses a value of a rich set of mutually-recursive 
+     data types, applying real functionality at a small portion of the data type; 
+   * structure editors such as XML editors, and generic graphical user interfaces; 
+   * data-conversion tools which for example store a data-type value in a database, 
+      or output it as XML, or in a binary format, or . . . 
+
+---+++ Projects
+
+Within several projects we have been developing programming language concepts for generic programming,
+applications of generic programming, and libraries for generic programming. We have contributed to, and are 
+contributing to several projects:
+
+   * [[http://www.cs.chalmers.se/~patrikj/poly/ PolyP]]
+   * [[http://www.generic-haskell.org/ Generic Haskell]]
+   * [[Real-life datatype-generic programming]]
+
+---+++ Are you interested?
+We have a nice group working on several aspects of generic programming. But there is always more to do, and you are welcome to contribute.
+
+---+++++ Master's Student
+If you are a master's student at Utrecht University, you can write a thesis on several aspects of generic programming, both on theoretical and more practical aspects. See our *[[MastersProjects][master's projects]]* for more information.
+
+---+++++ !PhD Students and Postdocs
+We welcome potential !PhD students or postdoctoral researchers. At the moment, we have no funding to pay for more positions, but please let us know if you can arrange your own.
+
+Current !PhD students include:
+
+   * [[http://www.cs.uu.nl/staff/leather.html][Sean Leather]]
+   * [[http://www.cs.uu.nl/staff/jpm.html][Jos&eacute; Pedro Magalh&atilde;es]]
+
+
+Former !PhD students include:
+
+   * [[http://www.cs.uu.nl/staff/alexey.html][Alexey Rodriguez Yakushev]]: _Towards Getting Generic Programming Ready for Prime Time_ (2009)
+   * [[http://www.andres-loeh.de/][Andres L&ouml;h]]: _Exploring Generic Haskell_ (2004)
+   * [[http://www.cs.chalmers.se/~patrikj/][Patrik Jansson]]: _Functional Polytypic Programming_ (2000)
+
+---++ Related Links
+   * [[http://www.haskell.org/][Haskell]] - Haskell is an advanced purely functional programming language.
+   * [[http://www.haskell.org/ghc/][GHC]] - The Glasgow Haskell Compiler is a state-of-the-art, open source compiler and interactive environment for Haskell.

@@ -1,0 +1,13 @@
+%META:TOPICINFO{author="ArieMiddelkoop" date="1212486194" format="1.1" version="1.4"}%
+%META:TOPICPARENT{name="WebLeftBar"}%
+To do before public release version 1.0:
+
+   * Polish website (shorten introductory blurb at [[Parser Combinators]]). Done.
+   * Thorough testing of packages. Done.
+   * Binary distributions for major platforms.
+   * Automated generation of source distributions using the ST buildfarm. Done.
+   * Haddock documentation.
+   * Update documentation for parsing combinators and pretty printers.
+   * Split uulib package into two packages for parsing combinators and pretty printers.
+   * Switch from Daan's Set, Map, etc libraries to GHC's libraries. Halfway done.
+   * Put attractive examples on the website (Examples section) to encourage casual viewers to try our tools.

@@ -1,0 +1,55 @@
+%META:TOPICINFO{author="AtzeDijkstra" date="1468491500" format="1.1" reprev="14" version="16"}%
+%META:TOPICPARENT{name="WebLeftBar"}%
+*UUAGC* is the _Utrecht University Attribute Grammar Compiler_
+It is a preprocessor for Haskell which makes it easy
+to write _catamorphisms_
+(that is, functions that do to any datatype what _foldr_ does to lists).
+You can define tree walks using the intuitive concepts of _inherited_ and _synthesized attributes_,
+while keeping the full expressive power of Haskell.
+
+---++ Download
+
+You can get the latest stable release in the [[Download]] page.
+UUAGC is distributed under the [[http://www.gnu.org/copyleft/gpl.html][GNU General Public License]].
+
+---++ Documentation
+
+   * [[Attribute Grammar Manual]]
+   * Slides of ICFP course on: [[http://www.cs.uu.nl/wiki/bin/view/Center/CompilerConstructionUsingAttributeGrammars][Compiler Construction in Haskell]]
+   * [[http://www.cs.uu.nl/people/doaitse/Papers/1999/AFP3.pdf][Paper on the background of UUAGC]]
+     as presented at the [[http://www.di.uminho.pt/afp98/][Third School on AdvancedFunctional Programming]].
+   * [[Swierstra.ResearchTalks][Some more slides of tutorials]] from a tutorial given at GPCE 2003 and IPA 2006.
+   * [[Attribute Grammar Future Projects]]
+   * [[https://github.com/FPtje/UUAGC-Examples][Examples made by Falco Peijnenburg]]
+
+---++ Examples of projects building on UUAGC
+
+---++++ AG system
+
+The font end of the UUAG system has been bootstrapped using the UUAGC system itself.
+As a consequence the distribution contains both a generated UUAGC system,
+and the code to generate it from.
+Just to get you up and running.
+
+---++++ Tiger compiler
+
+In order to compare the UUAGC approach with other approaches
+we have encode a [[TigerCompiler][compiler]] for the Tiger language,
+as used in Andrew Appel's books on compiler construction, in AG.
+For a comparison using Stratego,
+see [[http://www.program-transformation.org/Tiger/WebHome][here]].
+
+---++++ Pretty Printing Combinators
+
+A long time ago we implemented a collection of pretty printing combinators,
+in which one could specify alternative layouts.
+The development of this has been described in the [[http://www.cs.uu.nl/people/doaitse/Papers/1999/AFP3.pdf][paper]] mentioned above.
+A paper describing online pretty printers developed from an UUAG description has been submitted to JFP.
+A predecessor of this paper can be found in this [[http://www.cs.uu.nl/research/techreps/UU-CS-2004-025a.html][technical report]].
+
+---++++ UHC
+
+Our own, home grown Haskell compiler, is completely UUAGC based.
+For more information see the [[http://www.cs.uu.nl/wiki/bin/view/Ehc/WebHome][UHC]] home page.
+
+-- Main.DoaitseSwierstra - 29 Aug 2009

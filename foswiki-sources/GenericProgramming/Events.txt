@@ -1,0 +1,17 @@
+%META:TOPICINFO{author="JohanJeuring" date="1233332741" format="1.1" reprev="1.5" version="1.5"}%
+%META:TOPICPARENT{name="WebHome"}%
+---++ Conferences etc.
+
+   * [[http://wiki.portal.chalmers.se/cse/pmwiki.php/WGP09/WGP09][Workshop on Generic Programming, August 2009]]
+   * Johan Jeuring lectures on Generic Programming at the next Advanced Functional Programming School, The Netherlands, May 2008.
+   * Mathematics of Program Construction, July 2008
+   * Workshop on Generic Programming, September 2008
+
+---++ Related Schedules
+
+   * [[Stc/SoftwareTechnologyColloquium][Software Technology Colloquium]]
+   * [[Center/ReadingClub][Reading Club]]
+
+---++ Event Calendar
+
+<iframe src="http://www.google.com/calendar/embed?title=Event%20Calendar&amp;showTitle=0&amp;mode=AGENDA&amp;height=450&amp;wkst=1&amp;hl=en&amp;bgcolor=%23FFFFFF&amp;src=tae6kc5a4shajkk9n7uovqrjj8%40group.calendar.google.com&amp;color=%230D7813&amp;src=cd5uu0j2gb4srnc2q723rfbtdc%40group.calendar.google.com&amp;color=%23705770&amp;ctz=Europe%2FAmsterdam" style=" border-width:0 " width="600" height="450" frameborder="0" scrolling="no"></iframe>

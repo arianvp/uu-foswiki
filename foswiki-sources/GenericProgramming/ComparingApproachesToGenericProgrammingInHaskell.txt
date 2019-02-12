@@ -1,0 +1,14 @@
+%META:TOPICINFO{author="SeanLeather" date="1203696584" format="1.1" reprev="1.1" version="1.1"}%
+%META:TOPICPARENT{name="Publications"}%
+---++ Reference
+Ralf Hinze, Johan Jeuring, and Andres LÃÂ¶h.  Comparing Approaches to Generic Programming in Haskell. In Roland Backhouse, Jeremy Gibbons, Ralf Hinze, and Johan Jeuring, editors, Lecture notes of the Spring School on Datatype-Generic Programming 2006, LNCS 4719, pages 72 - 149, 2007.
+
+---++ Abstract
+The last decade has seen a number of approaches to datatype-generic programming: !PolyP, Functorial ML, &#8216;Scrap Your Boilerplate&#8217;, Generic Haskell, &#8216;Generics for the Masses&#8217;, and so on. The approaches vary in sophistication and target audience: some propose full-blown programming languages, some suggest libraries, some can be seen 
+as categorical programming methods. In these lecture notes we compare 
+the various approaches to datatype-generic programming in Haskell. We 
+introduce each approach by means of example, and we evaluate it along 
+di&#64256;erent dimensions (expressivity, ease of use, and so on).
+
+---++ Links
+   * [[http://people.cs.uu.nl/johanj/publications/ComparingGpFinal.pdf][PDF]]

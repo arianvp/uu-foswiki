@@ -1,0 +1,13 @@
+%META:TOPICINFO{author="ArieMiddelkoop" date="1212486056" format="1.1" reprev="1.2" version="1.2"}%
+%META:TOPICPARENT{name="WebLeftBar"}%
+Here we attempt to organize the effort that goes into the next release. It also acts as some sort of poor man's bug tracking system.
+
+|Release|Bug or feature|
+|0.9.2||
+||Allow uuagc's configure script to detect a locally (--user) installed uulib.|
+||Fix preprocessor problem in uulib [[http://mail.cs.uu.nl/pipermail/hut/2005-December/000000.html][described here]].|
+|0.9.5||
+|0.9.6||
+||Improve documentation|
+|1.0.0||
+||New syntax|

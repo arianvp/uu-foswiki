@@ -1,0 +1,8 @@
+%META:TOPICINFO{author="AtzeDijkstra" date="1316585138" format="1.1" version="1.4"}%
+%META:TOPICPARENT{name="Download"}%
+For support and development related questions you are advised to subscribe to the following mailing lists:
+
+   * [[http://lists.science.uu.nl/mailman/listinfo/hut][hut]] for hut usage.
+   * [[http://lists.science.uu.nl/mailman/listinfo/hut-developers][hut-developers]] for hut development.
+
+-- Main.AtzeDijkstra - 21 Sep 2011

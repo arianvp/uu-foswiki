@@ -1,0 +1,107 @@
+%META:TOPICINFO{author="DoaitseSwierstra" date="1169223333" format="1.0" version="1.3"}%
+%META:TOPICPARENT{name="ParserCombinators"}%
+%TOC%
+
+---++++ I am not interested in error correction, and want to stop parsing as soon as I encounter an error.
+
+The parser produces a list of error messages; if you only print the first message on this list and do not force the evaluation of the parser in some other way (e.g. by asking how many errors there are in total), your parser will just stop at this first error, and hopefully with a good suggestion.
+
+---++++ My parsing times are getting very large
+
+Most likely you have an ambiguous grammar. For each ambiguous element the parsing time for the rest of the program doubles, quickly leading to exponential parsing times. Experience has shown that it is not always a trivial transformation to make your original grammar one that is not left-recursive. It is easy to make a mistake here. (see also the next question)
+
+---++++ How can I choose one of the alternatives in case a grammar is ambiguous
+
+It may be the case that you have several alternatives that are overlapping, and in that case you want to give preference to one of them. There is a function _pCost_ that can be of help here. A typical example is if you use the combinators to define a scanner and you want to parse an identifier, but some of those identifiers are to be interpreted as keywords. The trick now is to append a small step with low cost to the end of the identifier, that makes that alternative a bit more expensive, and thus gives preference to the other alternative. In order to be more robust if we have an erroneaous input immediately after we have added costs to both alternatives in the example.
+
+In the contenxt of:
+<pre>
+pChar = 'a' <..> 'z'
+pIdent = pList pChar
+
+if_as_ident	= ((("This is the identifier: ") ++) <$> pIdent)
+if_as_keyword = ((("This is the keyword: ")	 ++) <$> pToks "if")
+</pre>
+we get:
+<pre>
+*Examples> test (if_as_ident <* pCost 2 <|> if_as_keyword <* pCost 1) "if"
+"This is the keyword: if"
+</pre>
+
+---++++ How can I debug my parser
+
+The parser maintains an input state. probably the easiest way to find out what your parser is actually doing is to change the functions *splitInput* and *splitInputE*, which construct the next token from the input. If you do not have a problem you will see each token being asked for twice. 
+
+<pre>
+module Test where
+import UU.Parsing
+import Debug.Trace
+import UU.Parsing.CharParser
+
+data Tracing s = Tracing [s]
+
+instance Show s => InputState (Tracing s) s (Maybe s) where
+	splitStateE (Tracing  [])	  = Right' (Tracing [])
+	splitStateE (Tracing (s:ss))  = trace ("Inspecting " ++ show s  ++ "\n") (Left'  s (Tracing ss))
+	splitState  (Tracing (s:ss))  = trace ("Inspecting " ++ show s  ++ "\n") (		 s, Tracing ss)
+	getPosition (Tracing  [])	  = Nothing
+	getPosition (Tracing (s:ss))  = Just s
+
+
+
+-- parseIO' :: (Eq s, Show s, Symbol s) => Parser s a -> Tracing s -> IO a
+parseIO' = parseIOMessage showMessage 
+  where showMessage (Msg expecting position action)  
+			 =  let pos = case position of
+									Nothing -> "at end of file"
+									Just s  -> case action of 
+										  Insert _ -> "before " ++ show s
+										  Delete t -> "at " ++ show t  
+				 in "\n?? Error		: " ++ pos ++
+					 "\n?? Expecting  : " ++ show expecting ++
+					 "\n?? Repaired by: " ++ show action ++ "\n"					 
+
+a = pSym 'a'
+b = pSym 'b'
+c = pSym 'c'
+
+ab = (\ a b -> [a,b]) <$> a <*> b
+bc = (\ b c -> [b,c]) <$> b <*> c
+
+abc = (:)						  <$> a  <*> bc
+abc' = (\ ab c -> ab ++ [c]) <$> ab <*> c
+
+test = parseIO' (abc <|> abc') (Tracing "abc")
+</pre>
+
+As you can see every character (except the *'a'* on which the parser forks) shows up 4 times now, indicating that you have two alternative parses:
+
+<pre>
+*Test> test
+Inspecting 'a'
+
+Inspecting 'a'
+
+Inspecting 'a'
+
+Inspecting 'b'
+
+Inspecting 'b'
+
+Inspecting 'b'
+
+Inspecting 'b'
+
+Inspecting 'c'
+
+Inspecting 'c'
+
+Inspecting 'c'
+
+Inspecting 'c'
+
+"abc"
+
+</pre>
+-- Main.DoaitseSwierstra - 19 Jan 2007
+

@@ -1,0 +1,15 @@
+%META:TOPICINFO{author="JohanJeuring" date="1213368568" format="1.1" version="1.2"}%
+%META:TOPICPARENT{name="WebHome"}%
+We teach a [[http://www.cs.uu.nl/wiki/bin/view/GP/WebHome][course about Generic Programming]] here at Utrecht University.
+
+Johan Jeuring has lectured about libraries for generic programming at the Advanced Functional Programming school in May 2008.
+
+In the past we have contributed to several Schools with lectures about Generic Programming.
+   * Spring school on Datatype-Generic Programming, 2006.
+   * School on Generic Programming, 2002.
+   * School on Advanced Functional Programming, 1998.
+   * School on Advanced Functional Programming, 1996.
+
+
+
+-- Main.JohanJeuring - 13 Jun 2008

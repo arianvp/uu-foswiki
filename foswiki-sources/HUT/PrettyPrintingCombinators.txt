@@ -1,0 +1,28 @@
+%META:TOPICINFO{author="AlexeyRodriguez" date="1159364159" format="1.0" version="1.2"}%
+%META:TOPICPARENT{name="AttributeGrammarSystem"}%
+The combinators in the pretty-printing library are optimal in the sense that they produce the layout with the smallest height possible within a given width. Special combinators allow the sepcification of alternative layouts.
+
+Authors: [[http://www.memi.umss.edu.bo/~pablo/][Pablo Azero]] and Main.DoaitseSwierstra
+
+---++ License
+
+This software is licensed under the [[http://www.gnu.org/copyleft/lesser.html][LGPL]] license with a special exception allowing static linking. For more information look at the included COPYRIGHT file.
+
+---++ Download
+
+You can get the latest stable release in the [[Download]] page.
+
+---++ Documentation
+
+	* [[%ATTACHURL%/UserManPP.html][UserManPP.html]]: User's manual
+
+	* [[%ATTACHURL%/pabloicfp.ps][pabloicfp.ps]]: Optimal pretty printing combinators. Pablo R. Azero and S. Doaitse Swierstra.
+
+	* [[%ATTACHURL%/braga.pdf][braga.pdf]]: Designing and implementing combinator languages. S. Doaitse Swierstra, Pablo R. Azero Alcocer and Joao Saraiva.
+
+
+-- Main.AlexeyRodriguez - 13 Dec 2005
+
+%META:FILEATTACHMENT{name="UserManPP.html" attr="h" comment="User manual" date="1159363859" path="UserManPP.html" size="32364" user="AlexeyRodriguez" version="1.1"}%
+%META:FILEATTACHMENT{name="pabloicfp.ps" attr="h" comment="ICFP paper" date="1159363934" path="pabloicfp.ps" size="195135" user="AlexeyRodriguez" version="1.1"}%
+%META:FILEATTACHMENT{name="braga.pdf" attr="h" comment="Braga tutorial" date="1159363961" path="braga.pdf" size="568837" user="AlexeyRodriguez" version="1.1"}%

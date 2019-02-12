@@ -1,0 +1,32 @@
+%META:TOPICINFO{author="AlexeyRodriguez" date="1183567237" format="1.0" version="1.16"}%
+*[[WebHome][Home]]*
+
+<img src="%ATTACHURLPATH%/uuagsmall.png" alt="uuagsmall.png"  width="148" height="160"  />
+
+*Projects*
+	* [[Attribute Grammar System][Attribute Grammar]]
+	* [[Parser Combinators]]
+	* [[Pretty Printing Combinators][Pretty Printing]]
+	* [[Tiger Compiler][Tiger Compiler]]
+
+*Resources*
+	* [[Download]]
+	* [[Mailing list]]
+	* [[Developers]]
+	* [[Roadmap]]
+	* [[To Do]]
+
+<!-- Start of StatCounter Code -->
+<script type="text/javascript" language="javascript">
+<!-- 
+var sc_project=1111557; 
+var sc_invisible=1; 
+var sc_partition=2; 
+var sc_security="38f4ea2e"; 
+//-->
+</script>
+
+<script type="text/javascript" language="javascript" src="http://www.statcounter.com/counter/counter.js"></script><noscript><a href="http://www.statcounter.com/" target="_blank"><img  src="http://c3.statcounter.com/counter.php?sc_project=1111557&java=0&security=38f4ea2e&invisible=1" alt="counter" border="0"></a> </noscript>
+<!-- End of StatCounter Code -->
+
+%META:FILEATTACHMENT{name="uuagsmall.png" attr="h" comment="" date="1183567117" path="uuagsmall.png" size="10820" user="AlexeyRodriguez" version="1.1"}%

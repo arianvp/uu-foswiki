@@ -1,0 +1,21 @@
+%META:TOPICINFO{author="JohanJeuring" date="1221935162" format="1.1" reprev="1.5" version="1.5"}%
+The publications listed below are in reverse chronological order so that the most recent entries appear at the top and oldest appear at the bottom. Older publications of the [[People][group members]] can be found on their homepages.
+
+---++ 2008
+
+---++++ [[http://www.cs.uu.nl/research/techreps/UU-CS-2008-025.html][Libraries for Generic programming in Haskell]]
+Johan Jeuring, Sean Leather, JosÃÂ© Pedro MagalhÃÂ£es and Alexey Rodriguez. In Pieter Koopman, Rinus Plasmeijer, Doaitse Swierstra,editors, Draft Proceedings of the Sixth Advanced Functional Programming School (AFP'08), May 19-24 2008, Center Parcs "Het Heijderbos", The Netherlands. Technical Report: ICIS-R08008, May 2008, Radboud University Nijmegen, 2008.
+
+---++++ [[http://www.cs.uu.nl/research/techreps/UU-CS-2008-019.html][Generic programming with fixed points for mutually recursive datatypes]]
+Alexey Rodriguez, Stefan Holdermans, Andres LÃÂ¶h, and Johan Jeuring. Technical report Utrecht University UU-CS-2008-019, 2008.
+
+---++++ [[http://www.cs.uu.nl/research/techreps/UU-CS-2008-020.html][A Lightweight Approach to Datatype-Generic Rewriting]]
+Thomas van Noort, Alexey Rodriguez, Stefan Holdermans, Johan Jeuring, and Bastiaan Heeren. In Ralf Hinze, editor, Proceedings of the ACM SIGPLAN Workshop on Generic Programming, WGP'08.
+
+---++++ [[http://www.cs.uu.nl/research/techreps/UU-CS-2008-010.html][Comparing Libraries for Generic Programming in Haskell]]
+Alexey Rodriguez Yakushev, Johan Jeuring, Patrik Jansson, Alex Gerdes, Oleg Kiselyov, Bruno C. d. S. Oliviera.  In Andy Gill, editor, Proceedings of the ACM SIGPLAN Haskell Symposium. An extended version is available as Technical report Utrecht University UU-CS-2008-010, 2008.
+
+---++ 2007
+
+---++++ [[Comparing Approaches to Generic Programming in Haskell]]
+Ralf Hinze, Johan Jeuring, and Andres LÃÂ¶h. In Roland Backhouse, Jeremy Gibbons, Ralf Hinze, and Johan Jeuring, editors, Lecture notes of the Spring School on Datatype-Generic Programming 2006, LNCS 4719, pages 72 - 149, 2007.

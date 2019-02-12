@@ -1,0 +1,225 @@
+%META:TOPICINFO{author="ArieMiddelkoop" date="1196678007" format="1.1" version="1.3"}%
+%META:TOPICPARENT{name="AttributeGrammarSystem"}%
+%TOC%
+
+---++ UUAG Commandline Options
+
+<verbatim>
+  -m                                          generate default module header
+                  --module[=name]             generate module header, specify module name
+  -d              --data                      generate data type definition
+                  --strictdata                generate strict data fields (when data is generated)
+                  --strictwrap                generate strict wrap fields for WRAPPER generated data
+  -c              --catas                     generate catamorphisms
+  -f              --semfuns                   generate semantic functions
+  -s              --signatures                generate signatures for semantic functions
+                  --newtypes                  use newtypes instead of type synonyms
+  -p              --pretty                    generate pretty printed list of attributes
+  -w              --wrappers                  generate wappers for semantic domains
+  -r              --rename                    rename data constructors
+                  --modcopy                   use modified copy rule
+                  --nest                      use nested tuples
+                  --syntaxmacro               experimental: generate syntax macro code (using knit catas)
+  -o file         --output=file               specify output file
+  -v              --verbose                   verbose error message format
+  -h, -?          --help                      get (this) usage information
+  -a              --all                       do everything (-dcfsprm)
+  -P search path  --=search path              specify seach path
+                  --prefix=prefix             set prefix for semantic functions
+                  --self                      generate self attribute
+                  --cycle                     check for cyclic definitions
+                  --version                   get version information
+  -O              --optimize                  optimize generated code (--visit --case)
+                  --visit                     try generating visit functions
+                  --seq                       force evaluation using function seq (visit functions only)
+                  --unbox                     use unboxed tuples
+                  --bangpats                  use bang patterns (visit functions only)
+                  --case                      Use nested cases instead of let (visit functions only)
+                  --strictcase                Force evaluation of the scrutinee of cases (in generated code, visit functions only)
+                  --strictercase              Force evaluation of all variables bound by a case statement (in generated code)
+                  --strictsem                 Force evaluation of sem-function arguments (in generated code)
+                  --localcps                  Apply a local CPS transformation (in generated code, visit functions only)
+                  --splitsems                 Split semantic functions into smaller pieces
+                  --Werrors                   Turn warnings into fatal errors
+                  --Wignore                   Ignore warnings
+                  --Wmax=<max errs reported>  Sets the maximum number of errors that are reported
+                  --dumpgrammar               Dump internal grammar representation (in generated code)
+                  --dumpcgrammar              Dump internal cgrammar representation (in generated code)
+                  --gentraces                 Generate trace expressions (in generated code)
+                  --gencostcentres            Generate cost centre pragmas (in generated code)
+                  --sepsemmods                Generate separate modules for semantic functions (in generated code)
+  -M              --genfiledeps               Generate a list of dependencies on the input AG files
+</verbatim>
+
+---++ New Features (Aug 30, 2007)
+
+Features added during the last two years:
+
+   * Attribute dependency analysis and visit sequence generation (writeup: arie/jeroen?)
+   * Extensible data types (writeup: jeroen?)
+   * Generic SEM blocks (writeup: jeroen?)
+   * Higher-order attributes (writeup: arie?)
+   * Split semantic functions (writeup: arie?)
+   * Separate module generation (writeup: arie?)
+   * Unboxed tuples (writeup: arie?)
+   * Bang patterns, strict data types, strict wrappers (writeup: arie?)
+   * First/last meta attributes (writeup: arie?)
+   * Profiling (writeup: arie?)
+   * Additional commandline parameters (writeup: arie?)
+
+
+
+---++ New Features (Nov 3, 2003)
+
+The AG system has a number of new features.
+   * use of attribute names in patterns on left-hand side of a rule
+   * nonterminal sets
+   * DERIVING for classes
+   * WRAPPER to generate wrappers for semantic functions
+
+Left-hand side patterns:
+
+Attribute names can now be used in left hand side patterns:
+
+<verbatim>
+SEM X [ | counter :Int | pp:PP_DOC ]
+  | Y (lhs.pp, left.counter) = (text "v" >|< @lhs.counter, @lhs.counter+1)
+</verbatim>
+
+as an abbreviation for
+= (lhs.pp,lhs.counter)=
+one can write
+=  lhs.(pp,counter)=
+
+Nonterminal sets:
+
+As the name suggests a nonterminal set is a set of nonterminals. You can use them in =ATTR= statements and in the new =DERIVING= statement. A nonterminal set can be given a name using a =SET= statement:
+
+<verbatim>
+SET Expression = Expr Term Factor
+</verbatim>
+
+Whenever you use the set =Expression=it is expanded to =Expr Term Factor=
+
+You can for example write:
+=ATTR Expression [ | | pp : {PP_DOC} ]=
+  instead of
+=ATTR Expr Term Factor [ | | pp : {PP_DOC} ]=
+
+Nonterminal sets can be constructed using the following expression syntax:
+<verbatim>
+set ::= conid               -- single nonterminal or named set (5)
+      | set set             -- union                           (3)
+      | set "/\" set        -- intersection                    (1)
+      | set "-"  set        -- difference                      (2)
+      | conid "->" conid    -- path                            (4)
+      | "(" set ")"         -- grouping                        (5)
+      | "*"                 -- all defined nonterminals        (5)
+</verbatim>
+The numbers indicate the operator precedence. A conid is an uppercase identifier.
+The path operator (from -> to) computes the set of nonterminals that appear on direct paths between "from" and "to".
+The "to"-nonterminal is included in this set.
+
+The syntax of the new "SET" statement is defined as follows:
+<verbatim>statement ::= "SET" conid  "=" set</verbatim>
+
+A nonterminal set can used in an ATTR statement:
+<verbatim>
+statement ::= ATTR set "[" ... "]"
+</verbatim>
+For example:
+<verbatim>
+ATTR Root -> Expr [ env:Environment | | ]
+</verbatim>
+declares an inherited attribute "env" for Expr and all nonterminals between =Root= and =Expr=. So the environment is passed from the =Root= to all expressions in the tree.
+
+Deriving statement
+
+When the AG system encounters a =DERIVING= statement for a datatype it will emit a "deriving" construct for the generated datatype. The syntax of the =DERIVING= construct:
+<verbatim>
+statement ::= "DERIVING" set ":" conid ("," conid)*
+</verbatim>
+
+For example:
+<br>
+=DERIVING Types : Ord, Eq=
+ <br>
+generates =deriving (Ord,Eq)= at the end of the data definition for =Types=, and
+<br>
+=DERIVING *     : Show=
+<br>
+generates deriving (Show) for all data types.
+When more than one =DERIVING= statement is given for a single datatype, the union of the sets of classes will be taken.
+So when both =DERIVING= constructs above are provided then =Ord=, =Eq=, and =Show= are derived for the datatype =Types=, and =Show= for all other data types.
+
+Wrapper statement
+
+The AttributeGrammarSystem has a flag =--wrappers= to generate wrappers for the semantics of all nonterminals. A disadvantage of this flag is that is has to be provided as a command line argument, and cannot be expressed in the sources. Furthermore the wrapper functions are generated for all nonterminals instead of just the set of root nonterminals. A new statement =WRAPPER= has been added to address these problems:
+<verbatim>
+statement ::= "WRAPPER" set
+</verbatim>
+Here =set= stands for the set of nonterminals for which a wrapper function must be generated.
+
+For example:
+<br>
+=WRAPPER Root=
+ <br>
+generates a wrapper for =Root=, and
+<br>
+=WRAPPER Expression Statement=
+<br>
+generates wrappers for =Expression=, and =Statement=.
+
+Providing the flag =--wrappers= is equivalent to writing: <br>
+=WRAPPER *= <br>
+in your source file.
+---++ =TYPE= synonyms for Maybe and tuple types (March 15, 2005)
+
+The =TYPE= synonym construct is extended and now in addition to list-type also allows Maybe and tuple types.
+
+Some examples:
+<verbatim>
+TYPE X = MAYBE Int
+SEM  X
+  | Just lhs.pretty = "Just " ++ show @just
+  | Nothing  lhs.pretty = "Nothing"
+</verbatim>
+Note that =MAYBE= is a keyword and spelled using captials. Its constructors are =Just= and =Nothing=. The component in a =Just= node is named =just= .
+
+In a tuple type, you can provide names for the components:
+<verbatim>
+TYPE Date      = (day:Int,month:Int,year:Int)
+</verbatim>
+
+When you omit a name, the name xN will be used, where N is the position of the component.
+Hence: (Int,Int,Int) is equivalent to (x1:Int,x2:Int,x3:Int)
+<verbatim>
+TYPE Point     = (Int,Int)
+</verbatim>
+
+As usual =TYPE= synonyms can be used in other =TYPE= synonyms, or =DATA= definitions:
+<verbatim>
+TYPE Polygon   = [Point]
+DATA Tree      | Node Point Tree Tree
+               | Nil
+</verbatim>
+
+Attributes can be defined for tuples in the normal way. Note that the constructor of a tuple-type is called =Tuple=.
+<verbatim>
+ATTR Polygon Date Point [ || pretty : String]
+
+SEM Date
+  | Tuple lhs.pretty = show @day ++ "/" ++ show @month ++ "/" ++ show @year
+
+SEM Point
+  | Tuple lhs.pretty = "(" ++ show @x1 ++ "," ++ show @x2 ++ ")"
+
+SEM Polygon
+  | Cons lhs.pretty = @hd.pretty ++ " " ++ @tl.pretty
+  | Nil  lhs.pretty = ""
+
+</verbatim>
+
+Originally written by Main.ArthurBaars.
+
+-- Main.AlexeyRodriguez - 13 Dec 2005

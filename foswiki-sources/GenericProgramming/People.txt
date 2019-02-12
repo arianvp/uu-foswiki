@@ -1,0 +1,21 @@
+%META:TOPICINFO{author="SeanLeather" date="1203700047" format="1.1" reprev="1.1" version="1.1"}%
+<table border="0" style="float:left">
+<tr><td align="center"><a href="http://www.cs.uu.nl/staff/johanj.html"><img src="/staff/faces/johanj.jpg" alt="Johan Jeuring"></a></td></tr>
+<tr><td align="center"><a href="http://www.cs.uu.nl/staff/johanj.html">Johan Jeuring</a></td></tr>
+</table><table border="0" style="float:left">
+<tr><td align="center"><a href="http://www.cs.uu.nl/staff/leather.html"><img src="/staff/faces/leather.jpg" alt="Sean Leather"></a></td></tr>
+<tr><td align="center"><a href="http://www.cs.uu.nl/staff/leather.html">Sean Leather</a></td></tr>
+</table><table border="0" style="float:left">
+<tr><td align="center"><a href="http://www.cs.uu.nl/staff/andres.html"><img src="/staff/faces/andres.jpg" alt="Andres L&ouml;h"></a></td></tr>
+<tr><td align="center"><a href="http://www.cs.uu.nl/staff/andres.html">Andres L&ouml;h</a></td></tr>
+</table><table border="0" style="float:left">
+<tr><td align="center"><a href="http://www.cs.uu.nl/staff/jpm.html"><img src="/staff/faces/jpm.jpg" alt="Jos&eacute; Pedro Magalh&atilde;es"></a></td></tr>
+<tr><td align="center"><a href="http://www.cs.uu.nl/staff/jpm.html">Jos&eacute; Pedro Magalh&atilde;es</a></td></tr>
+</table><table border="0" style="float:left">
+<tr><td align="center"><a href="http://www.cs.uu.nl/staff/alexey.html"><img src="/staff/faces/alexey.jpg" alt="Alexey Rodriguez Yakushev"></a></td></tr>
+<tr><td align="center"><a href="http://www.cs.uu.nl/staff/alexey.html">Alexey Rodriguez Yakushev</a></td></tr>
+</table><table border="0" style="float:left">
+<tr><td align="center"><a href="http://www.cs.uu.nl/staff/doaitse.html"><img src="/staff/faces/doaitse.jpg" alt="Doaitse Swierstra"></a></td></tr>
+<tr><td align="center"><a href="http://www.cs.uu.nl/staff/doaitse.html">Doaitse Swierstra</a></td></tr>
+</table><table border="0" style="float:left">
+</table><br clear="all">

@@ -1,0 +1,17 @@
+%META:TOPICINFO{author="JosePedroMagalhaes" date="1264670424" format="1.1" version="1.6"}%
+%META:TOPICPARENT{name="SYB"}%
+---+++ Quick Links
+---
+*[[http://hackage.haskell.org/package/syb][Download]]*
+
+*[[http://code.google.com/p/scrapyourboilerplate/issues/list][Issue Tracker]]*
+
+*[[http://www.haskell.org/mailman/listinfo/generics][Mailing List]]*
+
+*API Documentation*
+   * =base-4=: =[[http://www.haskell.org/ghc/dist/stable/docs/libraries/base/Data-Data.html][Data.Data]]=
+   * =syb-0.1.0.3=: =[[http://hackage.haskell.org/packages/archive/syb/latest/doc/html/Data-Generics.html][Data.Generics]]=
+
+*[[http://code.haskell.org/syb/][View latest source]]*
+
+*[[http://www.cs.uu.nl/wiki/bin/view/GenericProgramming/SYB#Handling_the_6_10_base_split][Handling the 6.10 =base= split]]*

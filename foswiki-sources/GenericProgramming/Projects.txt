@@ -1,0 +1,20 @@
+%META:TOPICINFO{author="JohanJeuring" date="1206108423" format="1.1" reprev="1.3" version="1.3"}%
+%META:TOPICPARENT{name="WebHome"}%
+---++ [[MastersProjects][Master's Projects]]
+These are on a [[MastersProjects][separate page]].
+
+---++ Current Projects
+
+---+++ Comparing Generic Programming Libraries in Haskell
+In this project we are comparing many generic programming libraries in Haskell. We have developed a benchmark, and a set of criteria, and we are working on implementing the benchmark in the different libraries. The results of this comparison will be used as input for:
+
+---+++ Real-Life Datatype-Generic Programming
+We want to design a common library for generic programming in Haskell. The idea is together with several library developers to combine the best of the existing libraries, and develop one or more stable libraries for generic programming in Haskell.
+
+---++ Previous Projects
+
+---+++ !PolyP
+At Chalmers Patrik Jansson and Johan Jeuring have developed [[http://www.cs.chalmers.se/~patrikj/poly/][PolyP]], an extension of Haskell with which polytypic functions can be written and type checked. Patrik Jansson and Ulf Norell have developed a generic programming library instead of a programming language extension with about the same functionaliy as !PolyP.
+
+---+++ Generic Haskell
+[[http://www.generic-haskell.org/][Generic Haskell]] is an extension of the functional programming language Haskell that supports generic programming. Generic Haskell was developed in the context of an NWO-funded project. The project finished in 2004, but work on Generic Haskell and related issues continues. 2008 will see the last release of Generic Haskell.

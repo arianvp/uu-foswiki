@@ -1,0 +1,35 @@
+%META:TOPICINFO{author="JosePedroMagalhaes" date="1267600719" format="1.1" reprev="1.1" version="1.1"}%
+%META:TOPICPARENT{name="Libraries"}%
+---++ Introduction
+
+This is a generic programming library based on type classes and type families
+first described by Chakravarty et al. (see http://www.cse.unsw.edu.au/~chak/project/generics/).
+The current release is a simplified version mostly to support a [[GuardedRewriting][rewriting library]].
+
+---++ Download
+
+_If you have [[http://hackage.haskell.org/package/cabal-install][cabal-install]]_, you should use that to install the package,
+because it will handle everything for you:
+
+<pre>
+cabal install instant-generics
+</pre>
+
+
+_If you don't have cabal-install_, you must download the [[http://hackage.haskell.org/package/instant-generics][instant-generics package]] from !HackageDB and install it manually. Get the =tar.gz= file and decompress it. Once downloaded, use the following commands for configuring, building, and installing the library:
+
+<pre>
+runghc Setup configure
+runghc Setup build
+runghc Setup install
+</pre>
+
+For more details on the general options available, refer to the [[http://www.haskell.org/cabal/release/latest/doc/users-guide/][Cabal User's Guide]].
+
+---++ Source
+
+The source for this library can be downloaded from the [[http://subversion.tigris.org/][Subversion]] repository as follows:
+
+<pre>
+svn checkout <a href="https://subversion.cs.uu.nl/repos/project.dgp-haskell.libraries/Instant/trunk/">https://subversion.cs.uu.nl/repos/project.dgp-haskell.libraries/Instant/trunk/</a>
+</pre>

@@ -1,0 +1,90 @@
+%META:TOPICINFO{author="JohanJeuring" date="1287906413" format="1.1" version="1.5"}%
+%META:TOPICPARENT{name="Projects"}%
+We are always looking for master's students. There are many topics on which you can write a thesis. Some lean towards the theoretical while others are more practical. The lists below should give you an idea of what we've done and what we may potentially do.
+
+---++ Potential Projects
+In this section we list a couple of topics on which you can write a Master's thesis. This is not a complete list, contact [[http://people.cs.uu.nl/johanj/][Johan Jeuring]] if you want to know more about writing your Master's thesis on the topic of generic programming.
+
+   * Generic programs often use type-indexed datatypes: datatypes that are obtained from other datatypes in a generic way. Some example are a datatype extended with variables, with holes, or the datatype you define when implementing a zipper for a datatype. A common problem with such type-indexed datatypes is that values of these datatypes have to be constructed using the constructors of the type representation, instead of the constructors of the original datatype. We have some ad-hoc solutions for particular cases, but in this project it is the idea to solve this problem once and for all...
+   * Model-driven development. Model-driven development (or engineering, architecture, ...) has received a lot of attention lately. Generic programming is a kind of model-driven development. In this assignment you will have to investigate the various kinds of applications of model-driven development, and determine which of use would profit from generic programming. Of course you have to provide the implementation as a generic program as well.
+   * From datatype-specific to datatype-generic programs. A number of applications would profit from `generalisation'. Examples are computer algebra packages, exercise assistants, or compilers. A generic program can be applied to more domains, but it might also be possible to obtain a more efficient program by choosing a different datatype representation, and generating all of the boilerplate code from generic programs.
+   * Generic bidirectional programming. Turn generic programs into bidirectional programs, for example the generic programs in the library of EMGM. Investigate if these bidirectional programs can be used to replace some of the work in the bidirectional programming literature.
+   * Optimise Haskell compilers to compile generic programs into more efficient code. 
+   * Turn the exercise assistants we are developing into a generic program. In principle we know how to turn most components of the exercise assistants into generic programs, but turning the complete program into a generic program is challenging because of concepts such as abstract datatypes, domains with a special semantics, etc.
+
+---++ Current Projects
+
+---++ Previous Projects
+These are projects previously undertaken by master's students. Browse the included abstract or follow the link for more information.
+
+---+++ Generic selections
+Martijn van Steenbergen, Utrecht University, May 27, 2010.
+
+Tools for computer languages need position information: compilers 
+for providing better error messages, structure editors for mapping between 
+structural and textual views, and debuggers for navigating  
+through a term, for instance. Manually adding position information to 
+an abstract syntax tree is tedious and requires pervasive changes: the
+original tree becomes verbose and every function operating on it needs to
+be adapted.
+
+In this thesis, we describe how to automatically extend datatypes with position 
+information using datatype-generic programming techniques. Furthermore, we show 
+examples of how to use this position information: parsers that automatically 
+construct trees annotated with positions, catamorphisms that deal with failure 
+by reporting error locations, and zippers that efficiently navigate
+annotated trees. The generic programming technique we describe is applicable to 
+a wide range of domains.
+
+---+++ Generic programming with fixed points for parametrized datatypes 
+Erik Hesselink, Utrecht University, December 10, 2009.
+
+---+++ [[Stc/GenericViewsForGenericTypes][Generic Views for Generic Types]]
+Thomas van Noort, Utrecht University, January 24, 2008.
+
+Generic programming allows us to capture uniform behaviour for a family of types in a single de&#64257;- 
+nition. In this thesis, we focus on Generic Haskell, a preprocessor to Haskell that enables us to de&#64257;ne 
+generic functions and generic types. Such de&#64257;nitions are applicable in almost any context since their 
+result depends on a structural representation of types. Several representations exist, which together 
+are called generic views. These generic views include a standard view using sums of products, a 
+balanced view to improve ef&#64257;ciency, and a &#64257;xed-point view that makes the recursive occurrences in 
+a type explicit. In contrast to generic functions, Generic Haskell allows us de&#64257;ne generic types only 
+using the standard view.
+
+This thesis studies to what extent generic views, other than the standard view, are useful on the 
+type level. We illustrate the use of generic views for generic types by giving several examples, in- 
+cluding a &#64257;nite map library with improved ef&#64257;ciency, a generic rewriting library with automated 
+extension of the object language with meta variables, and the zipper for ef&#64257;cient traversal of data 
+structures, with improved usability. Additionally, we present a formal approach to the translation of 
+generic views for generic types and discuss the implementation in the Generic Haskell compiler.
+
+---+++ [[http://www.haksell.org/Personal_website/Research_files/thesis.pdf][Comparing Haskell libraries for generic programming]]
+Alex Gerdes, Open University (supervision at Utrecht University), October 27, 2007.
+
+There are numerous approaches to generic programming in Haskell. Until 
+now there hasn&#8217;t emerged a clear winner. The time is right to join all 
+the scattered e&#64256;ort and to converge into one common generic programming 
+library. This master&#8217;s thesis takes the &#64257;rst step in that process and develops 
+a set of criteria that can be used to evaluate and compare the known generic 
+programming libraries in Haskell. Besides the criteria, a set of test functions 
+has been developed to test whether a generic programming library satis&#64257;es 
+a particular criterion. A &#64257;rst preliminary evaluation of a few libraries is 
+conducted. This master&#8217;s thesis paves the way for the design of a common 
+generic programming library in Haskell. 
+
+---+++ [[http://people.cs.uu.nl/stefan/pubs/holdermans05generic.html][Generic Views]]
+Stefan Holdermans, Utrecht University, January 5, 2005.
+
+Structural polymorphism allows for generic functions to be defined by induction over the structure of types. 
+In Generic Haskell, the structure of a type is perceived as a nested sum of products. 
+Over the last few years it has been shown that a great amount of generic programs can be defined in terms of this perception. Still, there are applications for which viewing data types as sums of products limits the expressiveness of Generic Haskell. 
+As it turns out, different perceptions of the structure of types enable the definition of generic programs that are more efficient, more elegant, and more expressive. 
+We show how these different perceptions, which we call generic views, can be implemented and used in Generic Haskell.
+
+---+++ And before...
+We have studied generic programming since 1995, and besides the Master's students mentioned above, other Master students were:
+
+   * Paul Hagg, UU, MSc (2002): A framework for developing generic XML tools
+   * Joost Halenbeek, UU, MSc (1998): Comparing Approaches to Polytypic Programming
+   * Patrik Jansson, Chalmers, MSc (1995): Polytypism and polytypic unification.
+   * Jan de Wit, UU, MSc (2002) A technical overview of Generic Haskell

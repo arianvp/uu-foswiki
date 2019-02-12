@@ -1,0 +1,15 @@
+%META:TOPICINFO{author="SeanLeather" date="1254992171" format="1.1" version="1.9"}%
+%META:TOPICPARENT{name="EMGM"}%
+---+++ Quick Links
+---
+*[[http://hackage.haskell.org/cgi-bin/hackage-scripts/package/emgm][Download]]*
+
+*[[http://code.google.com/p/emgm/issues/list][Issue Tracker]]*
+
+*[[http://www.haskell.org/mailman/listinfo/generics][Mailing List]]*
+
+*Latest Release*: emgm-0.3.1
+   * *[[http://hackage.haskell.org/packages/archive/emgm/0.3.1/doc/html/Generics-EMGM.html][Documentation]]*
+   * [[https://subversion.cs.uu.nl/viewvc/project.dgp-haskell.libraries/EMGM/tags/emgm-0.3.1/][Source]]
+
+*[[https://subversion.cs.uu.nl/viewvc/project.dgp-haskell.libraries/EMGM/trunk/][Repository HEAD]]*

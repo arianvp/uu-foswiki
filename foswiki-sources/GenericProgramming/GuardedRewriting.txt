@@ -1,0 +1,42 @@
+%META:TOPICINFO{author="JosePedroMagalhaes" date="1291619489" format="1.1" version="1.5"}%
+%META:TOPICPARENT{name="Libraries"}%
+---++ Introduction
+
+This is a generic rewriting library based on type classes and type families described in the paper:
+Thomas van Noort, Alexey Rodriguez Yakushev, Stefan Holdermans,
+Johan Jeuring, Bastiaan Heeren, JosÃÂ© Pedro MagalhÃÂ£es.
+[[http://dreixel.net/research/pdf/ladgr.pdf][A Lightweight Approach to Datatype-Generic Rewriting]].
+Journal of Functional Programming, Special Issue on Generic Programming, 2010.
+
+Note that this is NOT the same library as [[Rewriting]], as it uses a different underlying
+generic programming library (InstantGenerics) and supports more datatypes
+and rules with preconditions.
+
+---++ Download
+
+_If you have [[http://hackage.haskell.org/package/cabal-install][cabal-install]]_, you should use that to install the package,
+because it will handle everything for you:
+
+<pre>
+cabal install guarded-rewriting
+</pre>
+
+
+_If you don't have cabal-install_, you must download the [[http://hackage.haskell.org/package/guarded-rewriting][guarded-rewriting package]] from !HackageDB and install it manually. Get the =tar.gz= file and decompress it. Once downloaded, use the following commands for configuring, building, and installing the library:
+
+<pre>
+runghc Setup configure
+runghc Setup build
+runghc Setup install
+</pre>
+
+For more details on the general options available, refer to the [[http://www.haskell.org/cabal/release/latest/doc/users-guide/][Cabal User's Guide]].
+
+
+---++ Source
+
+The source for this library can be downloaded from the [[http://subversion.tigris.org/][Subversion]] repository as follows:
+
+<pre>
+svn checkout <a href="https://subversion.cs.uu.nl/repos/project.dgp-haskell.libraries/GuardedRewriting/">https://subversion.cs.uu.nl/repos/project.dgp-haskell.libraries/GuardedRewriting/</a>
+</pre>

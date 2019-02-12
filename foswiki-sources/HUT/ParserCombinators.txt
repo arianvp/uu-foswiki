@@ -1,0 +1,297 @@
+%META:TOPICINFO{author="DoaitseSwierstra" date="1281288928" format="1.1" version="1.10"}%
+%META:TOPICPARENT{name="AttributeGrammarSystem"}%
+<!--
+   * Set CUSTOMTOPICTITLE = Fast, Error Repairing Parser Combinators, with Online Behaviour
+-->
+%TOC%
+
+---++ Why would you want to use this Library
+Maybe you have always been intrigued by the use of Combinator
+Parsers because they allow you to:
+
+   * use the abstraction, typing and naming mechanism of Haskell
+   * create parsers dynamically
+   * keep life simple by not having to run a separate program in order to generate a parser
+   * work with (limited forms of) infinite grammars
+   * write your grammars the way you think they should look like, without having to pay attention to things
+   like LALR(1) restrictions
+
+Maybe you have thus far refrained form using them because of:
+   * expensive, backtracking implementations
+   * implementations that just try all alternatives sequentially
+   * bad error reporting and no error  recovery properties
+   * combinator libraries that put strong restrictions on your grammar, e.g. requiring the grammar to be LL(1)
+   * combinator libraries that force you to control the backtracking process by explicitly annotating your parsers
+   * error messages that are produced only after the parsing process has fully completed
+   * space leaks
+   * non-online parsers that only return  something after the whole input has been consumed 
+
+So why not use the Utrecht Parser Combinators, that have all the
+afore mentioned advantages, but not the mentioned disadvantages!
+
+We furthermore provide you with:
+   * the possibility to control your own error-reporting
+   * combinators which can describe list of woven and permuted elements, which are e.g. ideal for parsing lists of options
+   * a default implementation of all classes, that makes your life simple in case you are not interested in fiddling the inner workings
+   * an error printing mechanism that prints interleaved error messages whenever repairs are necessary
+
+---++ Download
+
+You can get the latest stable release from Hackage using Cabal:
+<verbatim>
+cabal install uu-parsinglib
+</verbatim>
+
+---++ License
+
+This software is licensed under the MIT license. For more information look at the included COPYRIGHT file.
+
+ If you have any comments do not hesitate to contact me: <A HREF="mailto:doaitse@cs.uu.nl"><I>Doaitse Swierstra</I>
+
+---++ FAQ
+
+Doaitse maintains a [[ParserCombinatorsFAQ][FAQ]], where he provides answers to common questions. In due time these have to end up in a manual.
+
+   * a [[Center.TigerInAG][Tiger Compiler]] that describes the implementation of the famous Tiger langauge as used in the compiler construction books written by Andrew Appel, but in this case making use of our old parser combinators and [[Attribute Grammar System]].
+
+
+---+++  Documentation
+We have written a tutorial for the Lernet summer school in Urugauy, 2008. The notes will appear in the Springer Lecture Notes. It has also appeared as a [[http://www.cs.uu.nl/research/techreps/repo/CS-2008/2008-044.pdf][Technical report CS-2008-044.pdf]]. 
+
+---+++ Why a new version
+
+Writing the new tutorial went hand in hand with the construction of a new  version of our combinators in the uulib package. The main interface has remained largely unchanged. With the advent of GADT's etc. many things can now be formulated more easily than 10 years ago.  It can be downloaded form Hackage:
+<verbatim>
+{sudo} cabal install  uu-parsinglib
+</verbatim>
+
+---+++ Main characteristics of the new package =uu-parsinglib=:
+
+   * incorporation of monadic combinators makes it possible to construct parsers in a monadic style
+   * two versions of basic parsers, in order to cope with a potential black hole in the [[http://doi.acm.org/10.1145/944705.944727][Swierstra & Hughes]] ICFP paper. 
+   * ambiguous grammars can be handled, provided one is prepared to indicate that a non-terminal is ambiguous
+   * the recognition of a single symbol is overloaded on the type on the symbol to be recognised
+   * online construction f results
+   * no need to use "cut" like annotations to avoid holding on to the input
+   * the basic data structure can be used for any kind of breadth-first search
+
+---+++ Some questions you may ask:
+
+   1 _What will happen to the version in the uulib package?_ This will happily live on forever since it is used in most of the software we distribute. Especially when dealing with grammars with non-terminals which have a huge number of productions they are still to be preferred.
+   1 _Should I switch?_ If you have a small parser you may consider doing so, especially if you need the monadic interface. If speed is really an issue you may decide to stick to the uulib version.
+
+---++ Feedback
+
+I would be happy it you would let me
+know:
+   * whether you are using one of the two packages and what for
+   * what modifications you are interested in
+   * what modifications you have made yourself
+   * whether you think the package is useful
+
+---++ Examples of Use
+
+The uulib vesrion is heavily used in:
+   *  the Utrecht Haskell Compiler (UHC)
+   * the Shuffle tool 
+   * the Utrecht Attribute Grammar Compiler (UUAGC)
+
+The uu-parserlib version is strating to become actively used now.
+
+---++ Demo
+Some from  code in the Examples file:
+<verbatim>
+Prelude> :load "src/Text/ParserCombinators/UU/Examples.hs"
+[1 of 1] Compiling Text.ParserCombinators.UU.Examples ( src/Text/ParserCombinators/UU/Examples.hs, interpreted )
+Ok, modules loaded: Text.ParserCombinators.UU.Examples.
+*Text.ParserCombinators.UU.Examples> main
+Loading package array-0.3.0.1 ... linking ... done.
+Loading package filepath-1.1.0.4 ... linking ... done.
+Loading package old-locale-1.0.0.2 ... linking ... done.
+Loading package old-time-1.0.0.5 ... linking ... done.
+Loading package unix-2.4.0.2 ... linking ... done.
+Loading package directory-1.0.1.1 ... linking ... done.
+Loading package process-1.0.1.3 ... linking ... done.
+Loading package time-1.1.4 ... linking ... done.
+Loading package random-1.0.0.2 ... linking ... done.
+Loading package haskell98 ... linking ... done.
+Loading package uu-parsinglib-2.5.4.1 ... linking ... done.
+
+===========================================
+>>   run pa  "a"
+--
+-- > Result: "a"
+-- 
+
+===========================================
+>>   run pa  "b"
+--
+-- > Result: "a"
+-- > Correcting steps: 
+-- >    Deleted  'b' at position (0,0) expecting 'a'
+-- >    Inserted 'a' at position (0,1) expecting 'a'
+-- 
+
+===========================================
+>>   run ((++) <$> pa <*> pa)  "bbab"
+--
+-- > Result: "aa"
+-- > Correcting steps: 
+-- >    Deleted  'b' at position (0,0) expecting 'a'
+-- >    Deleted  'b' at position (0,1) expecting 'a'
+-- >    Deleted  'b' at position (0,3) expecting 'a'
+-- >    Inserted 'a' at position (0,4) expecting 'a'
+-- 
+
+===========================================
+>>   run pa  "ba"
+--
+-- > Result: "a"
+-- > Correcting steps: 
+-- >    Deleted  'b' at position (0,0) expecting 'a'
+-- 
+
+===========================================
+>>   run pa  "aa"
+--
+-- > Result: "a"
+-- > Correcting steps: 
+-- >    The token 'a' was not consumed by the parsing process.
+-- 
+
+===========================================
+>>   run (do  {l <- pCount pa; pExact l pb})  "aaacabbbb"
+--
+-- > Result: ["b","b","b","b"]
+-- > Correcting steps: 
+-- >    Deleted  'c' at position (0,3) expecting one of ['a', 'b']
+-- 
+
+===========================================
+>>   run (amb ( (++) <$> pa2 <*> pa3 <|> (++) <$> pa3 <*> pa2))  "aaaaa"
+--
+-- > Result: ["aaaaa","aaaaa"]
+-- 
+
+===========================================
+>>   run paz  "ab1z7"
+--
+-- > Result: "abz"
+-- > Correcting steps: 
+-- >    Deleted  '1' at position (0,2) expecting 'a'..'z'
+-- >    The token '7' was not consumed by the parsing process.
+-- 
+
+===========================================
+>>   run (pa <|> pb <?> justamessage)  "c"
+--
+-- > Result: "b"
+-- > Correcting steps: 
+-- >    Deleted  'c' at position (0,0) expecting justamessage
+-- >    Inserted 'b' at position (0,1) expecting 'b'
+-- 
+
+===========================================
+>>   run (amb (pEither  parseIntString  pIntList))  "(123;456;789)"
+--
+-- > Result: [Left ["123","456","789"],Right [123,456,789]]
+-- 
+
+===========================================
+>>   run munch  "a^=^**^^b"
+--
+-- > Result: "^=^**^^"
+-- 
+
+===========================================
+>>   run ((,)   `pMerge` (pBetween 2 3 pa <||> pBetween 1 2 pb))                         "abba"
+--
+-- > Result: (["a","a"],["b","b"])
+-- 
+
+===========================================
+>>   run ((,)   `pMerge` (pBetween 2 3 pa <||> pBetween 1 2 pb))                         "bba"
+--
+-- > Result: (["a","a"],["b","b"])
+-- > Correcting steps: 
+-- >    Inserted 'a' at position (0,3) expecting 'a'
+-- 
+
+===========================================
+>>   run (amb ((,)   `pMerge` (pBetween 2 3 pa <||> pBetween 1 2 pa)))                   "aaa"
+--
+-- > Result: [(["a","a"],["a"]),(["a","a"],["a"]),(["a","a"],["a"])]
+-- 
+The 'a' at the right hand side can b any of the three 'a'-s in the input
+
+===========================================
+>>   run ((,)   `pMerge` (pAtLeast 3 pa <||> pAtMost 3 pb))                              "aabbbb"
+--
+-- > Result: (["a","a","a"],["b","b","b"])
+-- > Correcting steps: 
+-- >    Deleted  'b' at position (0,5) expecting 'a'
+-- >    Inserted 'a' at position (0,6) expecting 'a'
+-- 
+
+===========================================
+>>   run ((,)   `pMerge` (pSome pa <||> pMany pb))                                       "abba"
+--
+-- > Result: (["a","a"],["b","b"])
+-- 
+
+===========================================
+>>   run ((,)   `pMerge` (pSome pa <||> pMany pb))                                       "abba"
+--
+-- > Result: (["a","a"],["b","b"])
+-- 
+
+===========================================
+>>   run ((,)   `pMerge` (pSome pa <||> pMany pb))                                       ""
+--
+-- > Result: (["a"],[])
+-- > Correcting steps: 
+-- >    Inserted 'a' at position (0,0) expecting one of ['b', 'a']
+-- 
+
+===========================================
+>>   run ((,)   `pMerge` (pMany pb <||> pSome pc))                                       "bcbc"
+--
+-- > Result: (["b","b"],["c","c"])
+-- 
+
+===========================================
+>>   run ((,)   `pMerge` (pSome pb <||> pMany pc))                                       "bcbc"
+--
+-- > Result: (["b","b"],["c","c"])
+-- 
+
+===========================================
+>>   run ((,,,) `pMerge` (pSome pa <||> pMany pb <||> pOne pc <||>  pNatural `pOpt` 5))  "babc45"
+--
+-- > Result: (["a"],["b","b"],"c",45)
+-- 
+
+===========================================
+>>   run ((,)   `pMerge` (pMany (pa <|> pb) <||> pSome pNatural))                        "1ab12aab14"
+--
+-- > Result: (["a","b","a","a","b"],[1,12,14])
+-- 
+
+===========================================
+>>   run ( (,)  `pMerge` ( ((++) `pSem` (pMany pa <||> pMany pb)) <||> pOne pc))         "abcaaab"
+--
+-- > Result: (["a","a","a","a","b","b"],"c")
+-- 
+
+===========================================
+>>   run ((((,), pc) `pMergeSep` (pMany pa <||> pMany pb)))                                "acbcacb"
+--
+-- > Result: (["a","a"],["b","b"])
+-- 
+*Text.ParserCombinators.UU.Examples> 
+</verbatim>
+
+-- Main.DoaitseSwierstra - 28 Apr 2009
+
+%META:FILEATTACHMENT{name="ipt-20041103-dikt.pdf" attr="h" comment="Implementation of programming languages" date="1160993045" path="ipt-20041103-dikt.pdf" size="1108012" user="AlexeyRodriguez" version="1.1"}%
+%META:FILEATTACHMENT{name="corrections.txt" attr="h" comment="Corrections" date="1160993385" path="corrections.txt" size="304" user="AlexeyRodriguez" version="1.1"}%

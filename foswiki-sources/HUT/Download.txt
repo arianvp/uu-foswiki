@@ -1,0 +1,41 @@
+%META:TOPICINFO{author="ArieMiddelkoop" date="1259965104" format="1.1" reprev="1.21" version="1.21"}%
+%META:TOPICPARENT{name="Download"}%
+---++ Latest Distribution
+
+Install the latest distribution through Hackage:
+
+<verbatim>
+cabal install uulib
+cabal install uuagc
+</verbatim>
+
+---++ Old source distributions
+
+The preferred method to obtain uulib and uuagc is through Hackage (see above).
+Alternatively, you can try some older versions below.
+You need to install the parsing and pretty printing combinator library (UULIB, below) before installing the Attribute Grammar System (UUAG). Either download both UULIB and UUAGC packages below.
+
+For installation instructions read the included README files.
+
+|*Release*|*Package*|*Description*|
+|0.9.10|||
+||[[http://hackage.haskell.org/packages/archive/uuagc/0.9.10/uuagc-0.9.10.tar.gz][uuagc-0.9.10-src.tar.gz]]|Attribute Grammar compiler|
+||[[http://hackage.haskell.org/packages/archive/uulib/0.9.10/uulib-0.9.10.tar.gz][uulib-0.9.10-src.tar.gz]]|Parsing and pretty printing combinator library|
+|0.9.7|||
+||[[http://hackage.haskell.org/packages/archive/uuagc/0.9.7/uuagc-0.9.7.tar.gz][uuagc-0.9.7-src.tar.gz]]|Attribute Grammar compiler|
+|0.9.6|||
+||[[http://hackage.haskell.org/packages/archive/uuagc/0.9.6/uuagc-0.9.6.tar.gz][uuagc-0.9.6-src.tar.gz]]|Attribute Grammar compiler|
+|0.9.5|||
+||[[http://hackage.haskell.org/packages/archive/uulib/0.9.5/uulib-0.9.5.tar.gz][uulib-0.9.5-src.tar.gz]]|Parsing and pretty printing combinator library|
+||[[http://hackage.haskell.org/packages/archive/uuagc/0.9.5/uuagc-0.9.5.tar.gz][uuagc-0.9.5-src.tar.gz]]|Attribute Grammar compiler|
+|0.9.2|||
+||[[%ATTACHURL%/uulib-0.9.2-src.tar.gz][uulib-0.9.2-src.tar.gz]]|Parsing and pretty printing combinator library|
+|0.9.1|||
+||[[%ATTACHURL%/uulib-0.9.1-src.tar.gz][uulib-0.9.1-src.tar.gz]]|Parsing and pretty printing combinator library|
+||[[%ATTACHURL%/uuagc-0.9.1-src.tar.gz][uuagc-0.9.1-src.tar.gz]]|Attribute Grammar compiler|
+
+%META:FILEATTACHMENT{name="uuagc-0.9.1-src.tar.gz" attr="h" comment="Attribute Grammar compiler - 0.9.1" date="1133999742" path="uuagc-0.9.1-src.tar.gz" size="150063" user="AlexeyRodriguez" version="1.2"}%
+%META:FILEATTACHMENT{name="uulib-0.9.1-src.tar.gz" attr="h" comment="Parsing and pretty printing combinator library" date="1133999799" path="uulib-0.9.1-src.tar.gz" size="113155" user="AlexeyRodriguez" version="1.1"}%
+%META:FILEATTACHMENT{name="uulib-0.9.2-src.tar.gz" attr="h" comment="Parsing and pretty printing combinator library" date="1134567418" path="uulib-0.9.2-src.tar.gz" size="113363" user="AlexeyRodriguez" version="1.1"}%
+%META:FILEATTACHMENT{name="uuagc-0.9.5-src.tar.gz" attr="h" comment="Attribute Grammar compiler - 0.9.5" date="1190360060" path="uuagc-0.9.5-src.tar.gz" size="254523" user="ArieMiddelkoop" version="1.1"}%
+%META:FILEATTACHMENT{name="uulib-0.9.5-src.tar.gz" attachment="uulib-0.9.5-src.tar.gz" attr="h" comment="" date="1199374662" path="uulib-0.9.5-src.tar.gz" size="114138" stream="uulib-0.9.5-src.tar.gz" user="Main.AlexeyRodriguez" version="1"}%

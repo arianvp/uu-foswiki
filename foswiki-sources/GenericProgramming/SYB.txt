@@ -1,0 +1,130 @@
+%META:TOPICINFO{author="JohanJeuring" date="1384202795" format="1.1" version="19"}%
+%META:TOPICPARENT{name="Libraries"}%
+<!-- %TOC% -->
+
+<div class="newsbar">
+%INCLUDE{SYBNavBar}%
+</div>
+
+*Scrap Your Boilerplate* (!SYB) is a library for generic programming in Haskell.
+It is supported since the GHC &gt;= 6.0 implementation of Haskell. Using this approach, you can
+write generic functions such as traversal schemes (e.g., =[[http://www.haskell.org/ghc/dist/stable/docs/libraries/syb/Data-Generics-Schemes.html#v%3Aeverywhere][everywhere]]=
+and = [[http://www.haskell.org/ghc/dist/stable/docs/libraries/syb/Data-Generics-Schemes.html#v%3Aeverything][everything]]=),
+as well as generic read, generic show and generic equality (i.e., =[[http://www.haskell.org/ghc/dist/stable/docs/libraries/syb/Data-Generics-Text.html#v%3Agread][gread]]=,
+= [[http://www.haskell.org/ghc/dist/stable/docs/libraries/syb/Data-Generics-Text.html#v%3Agshow][gshow]]=, and
+= [[http://www.haskell.org/ghc/dist/stable/docs/libraries/syb/Data-Generics-Twins.html#v%3Ageq][geq]]=). This approach
+is based on just a few primitives for type-safe cast and processing constructor applications.
+
+It was originally developed by Ralf LÃÄmmel and Simon Peyton Jones. Since then, many people have contributed with research relating to !SYB or its applications.
+
+---++ Introduction
+
+---+++ Datatype-generic programming
+
+Datatype-generic programming consists of defining functions on the structure
+of datatypes, rather than on a datatype itself. In this way, one can define functions
+that work for many different datatypes.
+
+In !SYB, the structure of datatypes is not directly exposed to the programmer. Instead,
+generic combinators are used to define the generic functions. These combinators
+are implemented using fundamental functions from the =Data= and =Typeable=
+classes.
+
+---+++ Generic functions
+
+Generic functions are usually written using methods from the =Data= class,
+which contains the generic combinators provided by !SYB for this end.
+
+---+++ Supported datatypes
+
+Not all datatypes can be used immediately with generic functions, but adding
+support is very simple. All that is necessary is an instance of the datatype for
+the =Data= and =Typeable= classes. These are readily derivable by GHC, using
+the normal =deriving= mechanism. One can simply write:
+<pre>data MyDataType = MyDataType <span style='font-weight: bold;'>deriving (Data, Typeable)</span></pre>
+
+---++ Documentation
+
+For API documentation, refer to the [[http://hackage.haskell.org/package/syb/docs/Data-Generics.html][Haddock documentation]].
+
+You can also have a look at the [[http://web.archive.org/web/20080622204226/http://www.cs.vu.nl/boilerplate/][original webpage]], which contains
+many examples. The original !SYB papers are also very informative:
+   * [[http://research.microsoft.com/en-us/um/people/simonpj/papers/hmap/][Scrap your boilerplate: a practical design pattern for generic programming]]
+   * [[http://research.microsoft.com/en-us/um/people/simonpj/papers/hmap/][Scrap more boilerplate: reflection, zips, and generalised casts]]
+
+---++ Download
+
+!SYB comes with [[http://www.haskell.org/ghc/index.html][GHC]], but it is also available on
+[[http://hackage.haskell.org/package/syb][Hackage]]. The version on
+Hackage is always the most up-to-date.
+
+---++ Source
+
+The source can be cloned from its repository using [[http://git-scm.com/][git]]:
+<pre>git clone git@github.com:dreixel/syb.git
+</pre>
+
+You can also [[https://github.com/dreixel/syb][view the files online]].
+
+---++ Handling the 6.10 =base= split
+
+In the discussion towards the release of the 6.10 version of [[http://www.haskell.org/ghc/index.html][GHC]], it was decided
+that !SYB would be separated from the compiler itself. This allows for easier maintainability, since updating the library
+does not have to depend on updating the compiler. For the context, refer to the discussion in the mailing list (several threads:
+[[http://thread.gmane.org/gmane.comp.lang.haskell.libraries/9670][1]],
+[[http://thread.gmane.org/gmane.comp.lang.haskell.libraries/9710][2]],
+[[http://thread.gmane.org/gmane.comp.lang.haskell.libraries/9738][3]],
+[[http://thread.gmane.org/gmane.comp.lang.haskell.libraries/9929][4]]).
+This splitting amounts to moving the =Data.Generics= modules from the =base= package into a new package called =syb=.
+
+However, the =Data= class is very tightly coupled with the compiler due to the automatic generation of instances.
+Completely moving the entire !SYB library from the =base= package would give a false sense of separation,
+since the methods of =Data= cannot be changed independently from the compiler. So, a separation was necessary:
+what depended on GHC stayed in =base= while the rest moved to =syb=.
+
+The [[http://thread.gmane.org/gmane.comp.lang.haskell.libraries/9962][discussion]] on how to split !SYB resulted in the following
+architecture:
+
+   $ <span class="WYSIWYG_TT">base4</span>: Most of !SYB was removed from =base4=. All the =Data.Generics= modules have been moved,
+                     but a new module, =[[http://www.haskell.org/ghc/dist/stable/docs/libraries/base/Data-Data.html][Data.Data]]=,
+                     has been created. This module contains:
+      * The entire contents of what was previously in =Data.Generics.Basics=. This is the =Data= class, all of its methods and
+             associated utility functions and datatypes.
+      * All of the instances that were previously in
+             = [[http://www.haskell.org/ghc/dist/stable/docs/libraries/base/Data-Generics-Instances.html][Data.Generics.Instances]]=,
+             except the instances for the following datatypes:
+             =DataType=, =TyCon=, =TypeRep=, =Handle=, =ThreadId=, =StablePtr=, =a -&gt; b=, =IO a=, =ST s a=, =STM a=, =IORef a=, =TVar a=, and =MVar a=.
+             Those were moved to the =syb= package.
+
+   $ <span class="WYSIWYG_TT">syb</span>: This new package contains the following modules:
+      * =Data.Generics.Basics= This module is empty, and simply re-exports the new =Data.Data= module.
+             It is provided for compatibility.
+      * =Data.Generics.Instances= This module re-exports the instances from the new =Data.Data= module
+             and also define the other instances that were previously in
+             = [[http://www.haskell.org/ghc/dist/stable/docs/libraries/base/Data-Generics-Instances.html][Data.Generics.Instances]]=:
+             =DataType=, =TyCon=, =TypeRep=, =Handle=, =ThreadId=, =StablePtr=, =a -&gt; b=, =IO a=, =ST s a=, =STM a=, =IORef a=, =TVar a=, and =MVar a=.
+             These instances were moved here because they were considered "dubious". What is meant by this is that it is not
+             clear how these datatypes can be traversed. They might disappear or be changed in future releases of the library.
+      * =Data.Generics.Aliases, Data.Generics.Schemes, Data.Generics.Text, Data.Generics.Twins=
+             were moved directly from base and kept unchanged.
+      * =Data.Generics= simply re-exports all the other modules for convenience (just like before).
+
+   $ <span class="WYSIWYG_TT">base3</span>: This package is provided for compatibility reasons. Here, all !SYB modules remain unchanged.
+
+As a result, =syb= is now available as a [[http://hackage.haskell.org/package/syb][package on Hackage]].
+
+---++ Bugs & Support
+
+To report bugs or suggest improvements, use the Google Code [[http://code.google.com/p/scrapyourboilerplate/issues/list][issue tracker for SYB]].
+
+For general concerns and questions, use the [[http://www.haskell.org/mailman/listinfo/generics][Generics mailing list]].
+
+<!-- Google Analytics tracking code -->
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-2677704-7");
+pageTracker._trackPageview();
+</script>

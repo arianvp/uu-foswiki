@@ -1,0 +1,57 @@
+%META:TOPICINFO{author="JosePedroMagalhaes" date="1267600265" format="1.1" version="1.5"}%
+%META:TOPICPARENT{name="Libraries"}%
+---++ Introduction
+
+Many generic programs require information about the recursive positions
+of a datatype. Examples include the generic fold, generic rewriting, and
+the Zipper data structure. This approach provides a fixed point view on
+data which allows these definitions for regular datatypes. It can be seen
+as a simplification of the [[http://hackage.haskell.org/package/multirec][Multirec library]],
+which provides similar functionality but for families of (possibly mutually recursive) datatypes.
+
+This library is the underlying generic representation mechanism in the paper:
+  Thomas van Noort, Alexey Rodriguez, Stefan Holdermans, Johan Jeuring, 
+  Bastiaan Heeren. [[http://www.cs.uu.nl/wiki/bin/view/Alexey/ALightweightApproachToDatatype-GenericRewriting][A Lightweight Approach to Datatype-Generic Rewriting.]]
+  In Ralf Hinze and Don Syme, editors, Proceedings of the ACM SIGPLAN Workshop 
+  on Generic Programming, WGP 2008, Victoria, BC, Canada, September 20, 2008, 
+  pages 13&#8211;24. ACM Press, 2008.
+
+Together with the core library and generic functions, we also provide an extra package, regular-extras, with additional functionality (dependent on other packages). Currently these extra functions are:
+   * [[http://hackage.haskell.org/package/QuickCheck-1.2.0.0][QuickCheck]]'s arbitrary, with an option to provide size, and frequencies for each constructor;
+   * [[http://hackage.haskell.org/package/QuickCheck-1.2.0.0][QuickCheck]]'s coarbitrary;
+   * [[http://hackage.haskell.org/package/binary-0.5.0.2][Data.Binary]] get and put.
+
+---++ Download
+
+_If you have [[http://hackage.haskell.org/package/cabal-install][cabal-install]]_, you should use that to install the package,
+because it will handle everything for you:
+
+<pre>
+cabal install regular
+</pre>
+
+or
+
+<pre>
+cabal install regular-extras
+</pre>
+
+_If you don't have cabal-install_, you must download the [[http://hackage.haskell.org/package/regular][regular package]] and the [[http://hackage.haskell.org/package/regular-extras][regular-extras package]] from !HackageDB and install them manually. Get the =tar.gz= files and decompress them.
+
+Once downloaded, use the following commands for configuring, building, and installing the library:
+
+<pre>
+runghc Setup configure
+runghc Setup build
+runghc Setup install
+</pre>
+
+For more details on the general options available, refer to the [[http://www.haskell.org/cabal/release/latest/doc/users-guide/][Cabal User's Guide]].
+
+---++ Source
+
+The source for this library can be downloaded from the [[http://subversion.tigris.org/][Subversion]] repository as follows:
+
+<pre>
+svn checkout <a href="https://subversion.cs.uu.nl/repos/project.dgp-haskell.libraries/regular/trunk/">https://subversion.cs.uu.nl/repos/project.dgp-haskell.libraries/regular/trunk/</a>
+</pre>

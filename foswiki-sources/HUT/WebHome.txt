@@ -1,0 +1,24 @@
+%META:TOPICINFO{author="AtzeDijkstra" date="1450784356" format="1.1" version="18"}%
+<div class="newsbar">
+%INCLUDE{WebNews}%
+</div>
+
+<!--
+   * Set PREV_SKIN = customtitle
+   * Set CUSTOMHEADTITLE = HUT: Haskell Utrecht Tools 
+   * Set CUSTOMTOPICTITLE = Haskell Utrecht Tools
+-->
+
+The HUT website hosts the following projects:
+
+   * A collection of Modules and Tools
+      * [[Attribute Grammar System]]
+      * [[Parser Combinators][Fast, Error Repairing Parser Combinators]]
+      * [[Pretty Printing Combinators]]
+
+
+   * A demonstration [[Tiger compiler]] using the Attribute Grammar System.
+
+   * At ICFP 2012 we taught a couse on [[http://www.cs.uu.nl/wiki/bin/view/Center/CompilerConstructionUsingAttributeGrammars][Compiler Construction in Haskell]] using our tools. Yoy may find slides there and example code.
+
+-- Main.AlexeyRodriguez - 10 Jan 2007

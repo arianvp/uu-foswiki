@@ -1,0 +1,19 @@
+%META:TOPICINFO{author="AlexeyRodriguez" date="1168444117" format="1.0" version="1.6"}%
+%META:TOPICPARENT{name="WebHome"}%
+%STARTINCLUDE%
+
+*2007-01-10*
+
+Bootstrapped snapshots of the latest versions available.
+
+*2005-12-14*
+
+New uulib release fixes *parse error on input `\'*.
+
+Major update of HUT website.
+
+*2005-12-08*
+
+Projects available in [[Downloads]] section.
+%STOPINCLUDE%
+

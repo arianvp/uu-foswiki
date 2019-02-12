@@ -1,0 +1,129 @@
+%META:TOPICINFO{author="JosePedroMagalhaes" date="1308661566" format="1.1" reprev="1.5" version="1.5"}%
+%META:TOPICPARENT{name="Projects"}%
+<!-- %TOC% -->
+
+HarmTrace (Harmony Analysis and Retrieval of Music with Type-level Representations of 
+Abstract Chords Entities) is a system for automatic harmony analysis of music.
+It takes a sequence of chords as input and produces a harmony analysis, which can be
+visualised as a tree.
+
+
+---++ Introduction
+
+Music theory has been essential in composing and performing music for centuries.
+Within Western tonal music, from the early Baroque on to modern-day jazz and pop 
+music, the function of chords within a chord sequence can be explained by  
+harmony theory. Although Western tonal harmony theory is a thoroughly studied 
+area, formalising this theory is a hard problem.
+
+With HarmTrace we have developed a formalisation of the rules of tonal harmony as a Haskell
+(generalized) algebraic datatype. Given a sequence of chord labels, the harmonic
+function of a chord in its tonal context is automatically derived. For this, we
+use several advanced functional programming techniques, such as
+type-level computations, datatype-generic programming, and
+error-correcting parsers. Our functional model of harmony offers various
+benefits: it can be used to define harmonic similarity measures and facilitate
+music retrieval, or it can help musicologists in batch-analysing large corpora
+of digitised scores, for instance.
+
+
+---++ How to use
+
+After installing HarmTrace, you can run the executable =harmtrace=.
+It should give you the following information:
+
+<pre>
+harmtrace: missing required argument -m,--mode &lt;parse|stdiff|lces|bpm&gt;
+usage: harmtrace [options]
+  [-c,--chords &lt;string&gt;]             Input Chord Sequence to parse
+  [-1,--sfile &lt;filepath&gt;]            Input file (source for diff)
+  [-2,--tfile &lt;filepath&gt;]            Input file (target for diff)
+  [-d,--dir &lt;directory&gt;]             Input directory (to process all files within)
+  -m,--mode &lt;parse|stdiff|lces|bpm&gt;  One of "parse", "lces", "stdiff", or "bpm"
+  [-p,--print]                       Set this flag to generate a .png for an input file
+  [-o,--out &lt;filepath&gt;]              Output binary file for parsing results
+  [-i,--in &lt;filepath&gt;]               Input binary file for matching
+</pre>
+
+First we must specify the mode of operation with =-m=.
+We can choose between =parse= and a series of different matching algorithms.
+
+With =-m parse=, =harmtrace= will read an input file (with =-1=), a directory (with =-d=),
+or a string from the command line (with =-c=), and output the results of parsing according to
+the harmonic model. If the input is a single file or a string from the command line,
+flag =-p= can be set to output a PNG file with the harmony tree. If the
+input is a directory, option =-o= can be used to store the parsing results to a binary
+file (useful for later reuse when matching).
+
+With =-m stdiff=, =-m lces=, or =-m bpm=, =harmtrace= will either read two input files
+(with =-1= and =-2=) or a directory (with =-d=). If taking two files, it will parse and
+match the harmony analysis of the two songs with the chosen algorithm. If taking a directory,
+it will parse and match all =.txt= files. In this mode, =harmtrace= looks at the filenames
+to decide if two files represent the same song or not. The syntax for file naming is the
+following:
+
+<pre>
+X_id_N_A.Z.txt
+</pre>
+
+=X= is the name of the song, =N= an identifier number, =A= is the author and =Z= is used to
+describe the original song format. The most important part is the =X=, which is used to
+decide when two different files encode the same song. Also, each =N= should be unique.
+Examples:
+
+<pre>
+Ac_id_00060_community.MGU.txt
+Accentuate The Positive_id_03140_wdick.MG1.txt
+Accentuate The Positive_id_06883_allanah.MGU.txt
+Accustomed To Her Face_id_06886_allanah.MGU.txt
+Accustomed To Her Face_id_09603_allanah.MG1.txt
+</pre>
+
+While operating in matching mode, the option =-i= can be used to specify already parsed input from
+a binary file. In any case, =-d= still has to be specified, for =harmtrace= to parse the file names and
+identify the songs which are similar.
+
+
+---+++ Input file syntax
+
+A simplified (and somewhat informal) description of the expected syntax of input files for =harmtrace= follows:
+
+<pre>
+song      -> key sp chordL
+
+chordL    -> chord sp chordL | &#949;
+chord     -> root ":" ?shorthand ";" nat
+
+root      -> rootN ?alt
+rootN     -> "A" | "B" | "C" | "D" | "E" | "F" | "G"
+alt       -> "b" | "#"
+
+shorthand ->   "maj" | "min" | "dim" | "aug" | "maj7" | "min7" | "7" 
+             | "dim7" | "hdim" | "hdim7" | "minmaj7" | "maj6" | "6" 
+             | "min6" | "9" | "maj9" | "min9" | "sus4"
+
+nat       -> "1" | "2" | ...
+
+sp        -> "\n" | " " | "\t"
+</pre>
+
+
+---++ Examples
+
+To be written.
+
+
+---++ Download
+
+The easiest way is to use cabal-install:
+
+<pre>
+cabal install HarmTrace
+</pre>
+
+Alternatively, you can download the code bundle from [[http://hackage.haskell.org/package/HarmTrace][Hackage]].
+
+
+---++ Bugs & Support
+
+To report bugs or suggest improvements, please contact [[http://www.cs.uu.nl/staff/bash.html][Bas]] and [[http://www.cs.uu.nl/staff/jpm.html][Pedro]].

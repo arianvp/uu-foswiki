@@ -1,0 +1,69 @@
+%META:TOPICINFO{author="ArieMiddelkoop" date="1297784266" format="1.1" version="1.3"}%
+%META:TOPICPARENT{name="AttributeGrammarSystem"}%
+---++ Unordered List
+
+   *  Derive data type structure from Haskell code (when data types are sufficiently simple; use package haskell-src-exts)
+   *  Type-attributes (for polymorphism in semantics; see my thesis, chapt dep-type AGs)
+   *  Namespaces for attributes (to prevent name clashes: mainly useful for local attributes)
+   *  Extensions for symbol tables using def/use policies, potentially in combination with ordering info. 
+   *  New ordering algorithm where you can (optionally) make visits explicit, avoid scheduling rules over certain visits, etc. (see my thesis, iterative AGs; only factor out the ordering algorithm)
+   *  Have different sets of inh/syn attrs per nonterminal (see my thesis, chapt dep-type AGs; needs GADTs). Mainly useful in combination with HO-attrs.
+
+
+---++ Polymorphic Attributes
+
+Currently, UUAGC does not allow polymorphism in the types of attributes. For code reuse purposes, it is sometimes convenient to parametrize the types of attributes. We achieve this goal via type-level attributes. In the following example, we introduce two type-level attributes, =a= and =b= respectively, and refer to these in the types of attributes:
+
+<verbatim>
+DATA Apply | App
+
+ATTR Apply [ fun : {@a -> @b}  arg : {@a}   a :: {*}  b : {*} | | res : {@b} ]
+SEM Apply | App  lhs.res = @lhs.fun @lhs.arg
+</verbatim>
+
+Inherited type-level attributes correspond to universally quantified types. Synthesized type-level attributes are existentially quantified. Note: to allow synthesized type-level attributes, it may be necessary to have an ordered attribute grammar, such that these existentials can be opened via case-statements. Also, it is necessary to wrap the semantic-type into a data-type.
+
+The above code is translated to:
+<verbatim>
+data T_Apply _a _b where
+  T_Apply :: (_a -> _b) -> _a -> _b -> T_Apply _a _b
+
+sem_Apply_App :: T_Apply _a _b
+sem_Apply_App = \lhsIfun lhsIarg -> let lhsSres = lhsIfun lhsIarg in lhsSres
+</verbatim>
+
+To require a dictionary on a polymorhpic type, we represent it explicitly using a data-type and pass it as inherited attribute:
+<verbatim>
+data DictShow a where
+  DictShow :: Show a => DictShow a
+
+ATTR Apply [ d : {DictShow @a} | | ]
+
+SEM Apply | App
+  lhs.res = case @lhs.d of
+             DictShow -> trace (show @lhs.arg) (@lhs.fun @lhs.arg)
+</verbatim>
+
+In general, we generate the following type for a nonterminal with inherited type-attributes inhT1, inhT2 (respectively synT3 and synT4), and
+inherited value-attributes inhV5, inhV6 (respectively synV7, synV8) to:
+<verbatim>
+data T_Nt inhT1 inhT2 where
+  T_Nt :: forall synT3 synT4 . ( inhV5 -> inhV6 -> (synV7, synV8) ) -> T_Nt inhT1 inhT2
+</verbatim>
+This requires an additional pattern match on the semantic result of a child, analogous to what the =--newtypes= extension already does.
+
+---++ Patterns
+
+Define semantics not per level of the AST (single-constructor pattern) but per multiple levels of the AST (more general patterns).
+
+---++ Guards
+
+Multiple semantics for an alternative but with guards selecting the alternative.
+
+---++ Multiple ASTs
+
+Define semantics of multiple parallel trees.
+
+---++ Refactor
+
+AG system has grown and requires refactoring: transformation before dependency analysis, transformations after dependency analysis.

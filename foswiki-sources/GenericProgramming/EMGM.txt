@@ -1,0 +1,151 @@
+%META:TOPICINFO{author="SeanLeather" date="1254992070" format="1.1" version="1.10"}%
+%META:TOPICPARENT{name="Libraries"}%
+<div class="newsbar">
+%INCLUDE{EMGMNavBar}%
+</div>
+
+*Extensible and Modular Generics for the Masses* (EMGM) applies concepts of datatype-generic programming to define generic
+functions for supported datatypes using type classes.
+
+---++ Introduction
+
+---+++ Datatype-generic programming
+
+Datatype-generic programming uses a representation of a datatype for defining
+generic functions. EMGM in particular uses a sum-of-products representation,
+where a sum represents two alternative constructors and a product represents a
+pair of arguments to a constructor.
+
+---+++ Generic functions
+
+Generic functions are written for the representation mentioned above along with
+a number of primitive types (e.g. =Int=, =Double=, =Char=). Such functions are
+generally recursive and written using induction on the elements of the structure
+(i.e. unit, sum, and product).
+
+---+++ Supported datatypes
+
+Functions in EMGM are generic, but support for types must be explicitly added.
+The library provides representation for many standard datatypes. To add support
+for a new datatype, you must write a bit of (usually simple) boilerplate code.
+The library code provides good examples to follow.
+
+---+++ Type classes
+
+EMGM uses type classes to define generic functions. Each class -- =Generic=,
+=Generic2=, or =Generic3= -- gives the interface of a function using 1, 2, or 3
+generic types. A generic function is then an instance of the appropriate class.
+
+The library also uses type classes as dispatchers for the representation. Rather
+than requiring the structure as an argument to a generic function, EMGM uses
+classes to choose the appropriate structure. Thus, all datatypes should be
+instances of these dispatcher classes.
+
+---++ Reference
+
+EMGM originated in the research of [[http://www.informatik.uni-bonn.de/~ralf/][Ralf Hinze]], [[http://web.comlab.ox.ac.uk/people/Bruno.Oliveira/][Bruno Oliveira]], and [[http://people.cs.uu.nl/andres/][Andres LÃÂ¶h]]. The library was further explored in a [[http://www.cs.uu.nl/wiki/Alexey/ComparingLibrariesForGenericProgrammingInHaskell][comparison of generic programming libraries]] by [[http://www.cs.uu.nl/wiki/Alexey][Alexey Rodriguez]], et al. The current library was developed simultaneously with the writing of (forthcoming) [[http://www.cs.uu.nl/research/techreps/UU-CS-2008-025.html][lecture notes]] for the [[http://www.st.cs.ru.nl/AFP_TFP_2008/][2008 Advanced Functional Programming Summer School]].
+
+See the following articles for further reading on the research behind EMGM. Note that the names of some library elements have changed slightly from those used in the literature, but most of the concepts are still the same.
+
+   1.  Ralf Hinze. [[http://www.informatik.uni-bonn.de/~ralf/publications.html#P21][Generics for the Masses]]. In ICFP 2004: Proceedings of the 9th ACM SIGPLAN international conference on Functional programming, pages 236-243. ACM Press, 2004.
+   2. Bruno C. d. S. Oliveira, Ralf Hinze, and Andres LÃÂ¶h. [[http://web.comlab.ox.ac.uk/publications/publication444-abstract.html][Extensible and Modular Generics for the Masses]]. In Henrik Nilsson, editor, Trends in Functional Programming, pages 199-216, 2006.
+   3. Alexey Rodriguez, Johan Jeuring, Patrik Jansson, Alex Gerdes, Oleg Kiselyov, and Bruno C. d. S. Oliveira. [[http://www.cs.uu.nl/wiki/Alexey/ComparingLibrariesForGenericProgrammingInHaskell][Comparing Libraries for Generic Programming in Haskell]]. Technical Report UU-CS-2008-010. Department of Information and Computing Sciences, Utrecht University.
+   4. Johan Jeuring, Sean Leather, JosÃÂ© Pedro MagalhÃÂ£es, and Alexey Rodriguez Yakushev. [[http://www.cs.uu.nl/research/techreps/UU-CS-2008-025.html][Libraries for Generic Programming in Haskell]]. Technical Report UU-CS-2008-025. Department of Information and Computing Sciences, Utrecht University.
+
+---++ Releases
+
+We have made several releases of the EMGM package. Here is some relevant information for each.
+
+---+++ emgm-0.3.1
+
+This was the fourth release, made on 05 March 2009.
+
+   * [[http://hackage.haskell.org/packages/archive/emgm/0.3.1/doc/html/Generics-EMGM.html][API Documentation]]
+   * [[https://subversion.cs.uu.nl/viewvc/project.dgp-haskell.libraries/EMGM/tags/emgm-0.3.1/][Source code]]
+
+Changes:
+
+   * New functions: deriveMany, deriveManyWith
+
+---+++ emgm-0.3
+
+This was the third release, made on 03 March 2009.
+
+   * [[http://hackage.haskell.org/packages/archive/emgm/0.3/doc/html/Generics-EMGM.html][API Documentation]]
+   * [[https://subversion.cs.uu.nl/viewvc/project.dgp-haskell.libraries/EMGM/tags/emgm-0.3/][Source code]]
+   * [[http://thread.gmane.org/gmane.comp.lang.haskell.cafe/54035][Release announcement]]
+
+Changes:
+
+   * [[http://hackage.haskell.org/packages/archive/emgm/0.3/doc/html/Generics-EMGM-Derive.html][Improved deriving]] with Template Haskell
+   * New functions: [[http://hackage.haskell.org/packages/archive/emgm/0.3/doc/html/Generics-EMGM-Functions-Map.html#v%3Acast][cast]], [[http://hackage.haskell.org/packages/archive/emgm/0.3/doc/html/Generics-EMGM-Functions-Everywhere.html#v%3Aeverywhere][everywhere]], [[http://hackage.haskell.org/packages/archive/emgm/0.3/doc/html/Generics-EMGM-Functions-Everywhere.html#v%3Aeverywhere%27][everywhere']]
+   * Fixed cabal-install issue for newer versions of Cabal and GHC 6.8. If you have problems with cabal-install and EMGM, you should [[http://hackage.haskell.org/cgi-bin/hackage-scripts/package/emgm][download the package]] manually.
+
+---+++ emgm-0.2
+
+This was the second release, made on 30 January 2009.
+
+   * [[http://hackage.haskell.org/packages/archive/emgm/0.2/doc/html/Generics-EMGM.html][API Documentation]]
+   * [[https://subversion.cs.uu.nl/viewvc/project.dgp-haskell.libraries/EMGM/tags/emgm-0.2/][Source code]]
+   * [[http://article.gmane.org/gmane.comp.lang.haskell.cafe/51646][Release announcement]]
+
+Changes:
+
+   * [[http://hackage.haskell.org/packages/archive/emgm/0.2/doc/html/Generics-EMGM-Common-Derive.html][Derive representation]] using Template Haskell
+   * Significantly improved Haddock [[http://hackage.haskell.org/packages/archive/emgm/0.2/doc/html/Generics-EMGM.html][documentation]]
+   * New function: [[http://hackage.haskell.org/packages/archive/emgm/0.2/doc/html/Generics-EMGM-Functions-Map.html#v%3Abimap][bimap]]
+
+---+++ emgm-0.1
+
+This was the initial release, made on 19 September 2008.
+
+   * [[http://hackage.haskell.org/packages/archive/emgm/0.1/doc/html/Generics-EMGM.html][API Documentation]]
+   * [[https://subversion.cs.uu.nl/viewvc/project.dgp-haskell.libraries/EMGM/tags/emgm-0.1/][Source code]]
+   * [[http://article.gmane.org/gmane.comp.lang.haskell.generics/25][Release announcement]]
+
+---++ Download
+
+_If you have [[http://hackage.haskell.org/cgi-bin/hackage-scripts/package/cabal-install][cabal-install]]_, you should use that to install the package,
+because it will handle everything for you.
+
+<pre>
+cabal install emgm
+</pre>
+
+_If you don't have cabal-install_, you must download the [[http://hackage.haskell.org/cgi-bin/hackage-scripts/package/emgm][emgm package]] from
+the !HackageDB and install it manually. Get the =tar.gz= file and decompress it.
+
+Once downloaded, use the following commands for configuring, building, and
+installing the library.
+
+<pre>
+runghc Setup.lhs configure
+runghc Setup.lhs build
+runghc Setup.lhs install
+</pre>
+
+For more details on the general options available, refer to the [[http://www.haskell.org/cabal/release/latest/doc/users-guide/][Cabal User's Guide]].
+
+
+---++ Source
+
+The source can be checked out from its repository using [[http://subversion.tigris.org/][Subversion]].
+
+<pre>
+svn checkout <a href="https://subversion.cs.uu.nl/repos/project.dgp-haskell.libraries/EMGM/trunk/">https://subversion.cs.uu.nl/repos/project.dgp-haskell.libraries/EMGM/trunk</a>
+</pre>
+
+You can also [[https://subversion.cs.uu.nl/viewvc/project.dgp-haskell.libraries/EMGM/trunk/][view the files online]].
+
+
+---++ Bugs & Support
+
+To report bugs, use the Google Code [[http://code.google.com/p/emgm/issues/list][issue tracker for EMGM]].
+
+For general concerns and questions, use the [[http://www.haskell.org/mailman/listinfo/generics][Generics mailing list]].
+
+---++ Development
+
+EMGM has been constantly undergoing development since the idea for releasing the library came about in the [[Software Technology Center][http://www.cs.uu.nl/wiki/Center/]] at [[Utrecht University][http://www.uu.nl/]]. It is an open-source project, and we happily welcome discussion (on the [[http://www.haskell.org/mailman/listinfo/generics][Generics mailing list]]), suggestions, and/or patches.
+
+To get started, read the [[https://subversion.cs.uu.nl/viewvc/project.dgp-haskell.libraries/EMGM/trunk/README?view=markup][README]] file that comes with the distribution or in the repository. It describes a number of useful configuration flags and tools that we have used to develop and test EMGM.

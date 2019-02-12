@@ -1,0 +1,12 @@
+%META:TOPICINFO{author="JosePedroMagalhaes" date="1267599975" format="1.1" version="1.7"}%
+%META:TOPICPARENT{name="WebHome"}%
+There are many libraries around for generic programming in Haskell. However, not all are well documented, or even have a source distribution. To simplify the use of generic programming in Haskell (and possibly attract new users), we maintain a set of libraries. We have developed some of these libraries ourselves, and we have taken over maintenance of others.
+
+Each library has source for downloading, a package on [[http://hackage.haskell.org/][Hackage]], documentation, and some examples of usage. For questions, comments, or requests, use the [[http://www.haskell.org/mailman/listinfo/generics][Haskell generics mailing list]].
+
+   * [[EMGM]]
+   * [[InstantGenerics]] (see also [[GuardedRewriting]])
+   * [[SYB]]
+   * [[Regular]] (see also [[Rewriting]])
+   * [[Multirec]]
+   

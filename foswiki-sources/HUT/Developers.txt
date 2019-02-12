@@ -1,0 +1,15 @@
+%META:TOPICINFO{author="JeroenBransen" date="1333102082" format="1.1" version="1.5"}%
+%META:TOPICPARENT{name="WebLeftBar"}%
+---++ Subversion repository
+
+UUAGC repository:
+
+https://svn.science.uu.nl/repos/project.STEC.uuagc
+
+UULIB repository:
+
+https://subversion.cs.uu.nl/repos/project.STEC.uulib
+
+---++ Contributing
+
+We need contributors! Please check the [[To Do]] and [[Roadmap]] pages to see how you can help.

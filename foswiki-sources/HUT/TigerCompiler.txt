@@ -1,0 +1,35 @@
+%META:TOPICINFO{author="AlexeyRodriguez" date="1226921628" format="1.1" reprev="1.5" version="1.5"}%
+%META:TOPICPARENT{name="WebLeftBar"}%
+An implementation of a compiler front-end and type checker for Andrew
+Appel's Tiger language. The implementation has been
+developed as an example of the use of the tools in the HUT project.
+
+Author: [[Main.ArthurBaars][Arthur Baars]]
+
+---+++ Download cabal package
+You can use the cabal package if you are not planning to do development, or if you are going to do development that is not related to the attribute grammar sources. That package can be downloaded from:
+
+   * [[http://hackage.haskell.org/cgi-bin/hackage-scripts/package/tiger][tiger hackage page]]
+
+---+++ Download source distribution
+If you plan to do development on the ag files, you are better off with the source distribution for developers, which includes a Makefile:
+
+   * [[%ATTACHURL%/tiger-1.0-src.tar.gz][tiger-1.0-src.tar.gz]]
+
+You can install this package as follows
+<verbatim>
+./configure
+make
+make install
+</verbatim>
+
+This distribution can be generated from the repository using the following commands:
+<verbatim>
+autoconf
+./configure
+make dist
+</verbatim>
+
+%META:FILEATTACHMENT{name="tiger.zip" attr="h" comment="" date="1194342782" path="tiger.zip" size="40485" user="AlexeyRodriguez" version="1.1"}%
+%META:FILEATTACHMENT{name="tiger.tar.bz2" attachment="tiger.tar.bz2" attr="" comment="" date="1226585319" path="tiger.tar.bz2" size="41343" stream="tiger.tar.bz2" user="Main.ArieMiddelkoop" version="1"}%
+%META:FILEATTACHMENT{name="tiger-1.0-src.tar.gz" attachment="tiger-1.0-src.tar.gz" attr="" comment="Source distribution for developers" date="1226920093" path="tiger-1.0-src.tar.gz" size="50549" stream="tiger-1.0-src.tar.gz" user="Main.AlexeyRodriguez" version="1"}%
